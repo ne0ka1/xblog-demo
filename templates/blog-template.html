@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	
+	<link rel="stylesheet" href="../assets/css/highlight.min.css">
+	<link rel="stylesheet" href="../assets/css/markdown.css">
+	<link rel="stylesheet" href="../assets/css/katex.min.css">
+	
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/template.css">
+
+	<script src="../assets/js/highlight.min.js"></script>
+    <script src="../assets/js/marked.min.js"></script>
+    <script src="../assets/js/katex.min.js"></script>
+    <script src="../assets/js/auto-render.min.js"></script>
+    <script src="../assets/js/blog-generator.js"></script>
+	
+	<!-- favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../assets/icon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon/favicon-16x16.png">
+	<link rel="manifest" href="../site.webmanifest">
+</head>
+<body>
+	<!-- header -->
+	<section id="header">
+		<div class="container">
+			<!-- logo -->
+			<h1><a href="../index.html" id="logo">Xue</a></h1>
+			
+			<!-- nav -->
+			<nav id="nav">
+			    <a href="mailto:fake@gmail.com">Contact</a>
+			    <a href="../pages/blogs.html">Blogs</a>
+			    <a href="../pages/timeline.html">Timeline</a>
+			</nav>
+			<!-- end nav -->
+			
+		</div>
+	</section>
+	<!-- end header -->
+	
+	<div id="content"></div>
+	
+	<script>
+		// 配置 Marked
+		marked.setOptions({
+			renderer: new marked.Renderer(),
+			highlight: function(code, lang) {
+				const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+				return hljs.highlight(code, { language }).value;
+			},
+			langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
+		});
+
+		// 配置 Katex
+		renderMathInElement(document.body, {
+			// customised options
+			// • auto-render specific keys, e.g.:
+			delimiters: [
+			{left: '$$', right: '$$', display: true},
+			{left: '$', right: '$', display: false},
+			{left: '\\(', right: '\\)', display: false},
+			{left: '\\[', right: '\\]', display: true}
+			],
+			// • rendering keys, e.g.:
+			throwOnError : false
+		});
+
+		// 加载文章
+		let fileName = (new URLSearchParams(window.location.search)).get("name");
+		fetch(`../assets/blogs/${fileName}`)
+		.then(file => file.text())
+		.then(text => {
+
+			document.getElementById("content").innerHTML = marked.parse(text);
+
+			fetch("../assets/blogs/blogs.json")
+			.then(file => file.json())
+			.then(blogs => {
+				document.title = blogs["blogs"].find(item => item["file-name"] == fileName)["title"];
+			});
+		});
+	</script>
+</body>
+</html>

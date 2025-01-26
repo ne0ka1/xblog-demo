@@ -1,0 +1,55 @@
+{
+    "blogs": [
+        {
+            "file-name": "hello-world.md",
+            "title": "Hello World",
+            "tags": ["Guidance"],
+            "time": "2021/1/3"
+        },
+        {
+            "file-name": "innovation-insights-0.md",
+            "title": "灵感——创新需要有工匠精神",
+            "tags": ["Innovation", "Insights"],
+            "time": "2021/2/5"
+        },
+	{
+            "file-name": "free_will.md",
+            "title": "Free Will",
+            "tags": ["Philosophy"],
+	    "time": "2021/3/29"
+	},
+	{
+            "file-name": "moral_responsibility.md",
+            "title": "Moral Responsibility",
+	    "tags": ["Philosophy", "Ethics"],
+	    "time": "2021/4/2"
+	},
+	{
+            "file-name": "innovation-insights-1.md",
+            "title": "灵感——伟大事业应从现在开始",
+            "tags": ["Innovation", "Insights"],
+	    "time": "2021/6/15"
+        },
+
+	{
+            "file-name": "skepticism.md",
+            "title": "Skepticism",
+            "tags": ["Philosophy", "Epistemology"],
+	    "time": "2021/7/23"
+	},
+	{
+            "file-name": "existentialism.md",
+            "title": "Existentialism",
+	    "tags": ["Philosophy"],
+	    "time": "2021/12/18"
+	    
+	},
+	{
+            "file-name": "innovation-insights-2.md",
+            "title": "灵感——发展事业首先要选对方向",
+	    "tags": ["Innovation", "Insights"],
+	    "time": "2022/4/5"
+        }
+
+    ]
+}

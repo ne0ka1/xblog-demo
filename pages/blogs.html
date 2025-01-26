@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <script src="../assets/js/blog-generator.js"></script>
+
+    <!-- favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../assets/icon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon/favicon-16x16.png">
+	<link rel="manifest" href="../site.webmanifest">
+    
+</head>
+<body>
+    <!-- header -->
+    <section id="header">
+        <div class="container">
+            <!-- logo -->
+            <h1><a href="../index.html" id="logo">Xue</a></h1>
+            
+            <!-- nav -->
+            <nav id="nav">
+		<a href="mailto:fake@gmail.com">Contact</a>
+                <a href="../pages/blogs.html">Blogs</a>
+		<a href="../pages/timeline.html">Timeline</a>
+            </nav>
+            <!-- end nav -->
+            
+        </div>
+    </section>
+    <!-- end header -->
+    
+    <div id="blogs-list-container">
+        <ul id="blogs-list"></ul>
+    </div>
+    
+    <script>
+        fetch("../assets/blogs/blogs.json")
+        .then(file => file.json())
+        .then(data => {
+            console.log("List all blogs");
+            
+            data["blogs"].forEach(blogInfo => {
+                
+                let blogItemTemplate = `
+                <li>
+                    <div>
+                        <h1>${blogInfo["title"]}</h1>
+                        <h4>${String(blogInfo["tags"])}</h4>
+                    </div>
+                </li>
+                `;
+                
+                let item = $(blogItemTemplate);
+
+                $(item).find("h1").click(function (e) { 
+                    e.preventDefault();
+                    generateBlogPage(blogInfo["file-name"]);
+                });
+
+                $("#blogs-list").append(item);
+            });
+        });
+    </script>
+</body>
+</html>

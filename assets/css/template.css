@@ -1,0 +1,16 @@
+
+body {
+    font-family: 'PingFang SC', 'Myriad Pro', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+ol, blockquote, blockquote p, p {
+    max-width: initial;
+}
+
+h2, h3 {
+    margin-top: 1rem;
+}
+
+#content {
+    margin: 0 5vw;
+}
